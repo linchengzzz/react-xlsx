@@ -80,7 +80,7 @@ class App extends React.Component {
                 let i = 0;
                 for (; i < len; i++) {
                     const sModal = systemData[i][map.modal];
-                    if (sModal.indexOf(cModal) > -1) {
+                    if (sModal && sModal.toString().indexOf(cModal) > -1) {
                         // 当前数据已存在系统中
                         repeatDataSource.push({ ...item, id: index });
                         break;
@@ -98,7 +98,6 @@ class App extends React.Component {
     render() {
         const {
             columns,
-            repeatDataSource,
             unRepeatDataSource,
             contractLoading,
             systemLoading,
@@ -143,15 +142,6 @@ class App extends React.Component {
                             </div>
                             <Table
                                 loading={filterLoading}
-                                title={() => "已存在系统中的数据"}
-                                bordered
-                                rowKey="id"
-                                columns={columns}
-                                dataSource={repeatDataSource}
-                            />
-                            <Table
-                                loading={filterLoading}
-                                title={() => "不在系统中的数据"}
                                 bordered
                                 rowKey="id"
                                 columns={columns}
