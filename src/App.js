@@ -75,6 +75,7 @@ class App extends React.Component {
         });
         this.setState({ filterLoading: true }, () => {
             const len = systemData.length;
+            console.log(systemData);
             contractData.forEach((item, index) => {
                 const cModal = item[map.modal];
                 let i = 0;
@@ -98,6 +99,7 @@ class App extends React.Component {
     render() {
         const {
             columns,
+            repeatDataSource,
             unRepeatDataSource,
             contractLoading,
             systemLoading,
@@ -142,6 +144,15 @@ class App extends React.Component {
                             </div>
                             <Table
                                 loading={filterLoading}
+                                title={() => "已存在系统中的数据"}
+                                bordered
+                                rowKey="id"
+                                columns={columns}
+                                dataSource={repeatDataSource}
+                            />
+                            <Table
+                                loading={filterLoading}
+                                title={() => "不在系统中的数据"}
                                 bordered
                                 rowKey="id"
                                 columns={columns}
